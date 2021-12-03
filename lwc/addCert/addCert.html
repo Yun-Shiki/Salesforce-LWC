@@ -1,0 +1,46 @@
+<template>
+    <div class="slds-var-m-top_medium">
+
+        <lightning-button
+          variant="neutral"
+          label="Añadir Certificaciones"
+          icon-name="utility:add"
+          onclick={openCertificationModal}
+        ></lightning-button>
+
+    </div>
+
+    <c-gantt_chart_modal class="create-certif">
+
+        <span slot="title">
+            Añadir Certificación
+        </span>
+
+        <div slot="body" class="slds-form">
+
+            <lightning-combobox
+            value={typeT}
+            label="Tipo de Certificación"
+            options={CertificationOptions}
+            onchange={setTypeT}
+            required
+            ></lightning-combobox>
+            <lightning-combobox
+            value={typeC}
+            label="Certificación"
+            options={Certifications}
+            onchange={setTypeC}
+            disabled={disab}
+            required
+            ></lightning-combobox>
+            <lightning-input onchange={otracert} type="text" value={otras} label="otros"  disabled={disO}></lightning-input>
+            <lightning-input type="file" label="Fichero" accept="image/png, .zip, .pdf" onchange={fileput}>
+            </lightning-input>
+
+        </div>
+
+      <lightning-button slot="footer" variant="brand" label="Añadir"  class="slds-var-m-left_xx-small" onclick={saveCert}></lightning-button>
+    
+    </c-gantt_chart_modal>
+
+</template>

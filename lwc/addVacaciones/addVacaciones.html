@@ -1,0 +1,30 @@
+<template>
+    <div class="slds-m-top_medium">
+        <lightning-button
+          variant="neutral"
+          label="Solicitar Vacaciones"
+          icon-name="utility:add"
+          onclick={openAddVacationModal}
+        ></lightning-button>
+      </div>
+      <c-gantt_chart_modal class="create-vacaciones-modal">
+        <span slot="title">
+            Solicitar Vacaciones
+        </span>
+        <div slot="body" class="slds-form slds-form_stacked">
+            <lightning-input type="date" value="" label="Dia de inicio" 
+                data-field="startDate" onchange={DiaCambiado} ></lightning-input>
+            <lightning-input type="date" value="" label="Dia de incorporación" 
+                data-field="endDate" onchange={DiaCambiado}></lightning-input>
+            <lightning-combobox
+            value={type}
+            label="Tipo de vacaciones"
+            options={vacationOptions}
+            onchange={setType}
+            
+            ></lightning-combobox>
+    </div>
+    <lightning-button slot="footer" variant="brand" label="Enviar"  class="slds-m-left_xx-small" onclick={saveVacation}></lightning-button>
+    </c-gantt_chart_modal>
+    
+</template>

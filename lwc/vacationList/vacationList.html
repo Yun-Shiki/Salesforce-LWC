@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Mis Vacaciones" class ="slds-box">
+        <lightning-button slot="actions" variant="brand" label="Borrar" onclick={deleteV}></lightning-button>
+        <lightning-datatable key-field="Id" data={listV} columns={cols} onselect={getvac}>
+
+            </lightning-datatable>
+        
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,33 @@
+<template>
+
+        <div class="slds-m-top_medium">
+            <lightning-button
+              variant="neutral"
+              label="Crear Caso"
+              icon-name="utility:add"
+              onclick={openAddCaso}
+            ></lightning-button>
+          </div>
+          <c-gantt_chart_modal class="create-caso-modal">
+
+            <span slot="title">
+               Crear Caso
+            </span>
+            <div slot="body" class="slds-form slds-form_stacked">
+            
+                <lightning-combobox
+                    value={type}
+                    label="Tipo de caso"
+                    options={opcionesTipoCaso}
+                    onchange={setType}
+                ></lightning-combobox>
+                    <lightning-input onchange={onChangeTexto} type="text" value={texto} label="Asunto" 
+                    data-field="Asunto" ></lightning-input>
+                    <lightning-textarea onchange={onChangeTextArea} value={textArea} label="Descripción" 
+                    data-field="Descripcion" ></lightning-textarea>
+               </div>
+        <lightning-button slot="footer" variant="brand" onclick={saveCase} label="Guardar"  class="slds-m-left_xx-small"></lightning-button>
+    </c-gantt_chart_modal>
+       
+    
+</template>

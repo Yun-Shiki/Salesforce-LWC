@@ -1,0 +1,97 @@
+<html>
+<body>
+<template>
+   <lightning-card title="Proyectos presentes">
+        
+        <div class ="slds-var-m-around_medium">
+            <template class="temp" if:true={presentList.data}>
+                <template  for:each={presentList.data} for:item="Project__c">
+                    <lightning-button key={Project__c.Id} variant="base" label={Project__c.Name} onclick={handleProjectView} value={Project__c}></lightning-button> 
+                    <p key={Project__c.Id}></p>   
+                </template>
+                </template>
+            <template class="temp" if:true={presentList.error}>
+                No hay proyectos presentes 
+            </template>
+        </div>
+
+    </lightning-card> 
+
+    <lightning-card title="Proyectos Futuros">
+                 
+        <div class ="slds-var-m-around_medium">
+            <template class="temp" if:true={futurList.data}>
+            
+                <template  for:each={futurList.data} for:item="Project__c">
+                
+                    <lightning-button key={Project__c.Id} variant="base" label={Project__c.Name} onclick={handleProjectView} value={Project__c}></lightning-button>
+                    <p key={Project__c.Id}></p> 
+                </template>
+            </template>
+            <template class="temp" if:true={futurList.error}>
+                No hay proyectos futuros
+            </template>
+        </div>
+
+    </lightning-card> 
+    <lightning-card title="Proyectos Pasados">
+        <div class ="slds-var-m-around_medium">
+            <template class="temp" if:true={pastList.data}>
+                <template  for:each={pastList.data} for:item="Project__c">
+                    <lightning-button key={Project__c.Id} variant="base" label={Project__c.Name} onclick={handleProjectView} value={Project__c}></lightning-button> 
+                    <p key={Project__c.Id}></p>   
+          
+                </template>
+            </template>
+            <template class="temp" if:true={pastList.error}>
+                No hay proyectos pasados 
+            </template>
+        </div>
+
+    </lightning-card>
+
+   <c-gantt_chart_modal class="project_view_modal">
+    <span slot="title">
+        {projectName}
+    </span>
+    <div slot="body" class="slds-grid">
+        <div class="slds-col slds-size_1-of-2">
+            <!-- Your lightning-output-field components here -->
+            <p class="estilo"><strong>{Empleado}</strong></p>
+            <template class="temp" if:false={esEmpleado}>
+            <template for:each={ListaEmpleados} for:item="Allocation__c">
+                <p key={Allocation__c.Id}> {Allocation__c.Resource__r.Name} </p>
+            </template>
+            </template>
+            <template class="temp" if:true={esEmpleado}>
+            <p>{JefeProyecto}</p>
+            </template>
+            <p  class="estilo"><strong>Descripción</strong></p>
+            <p title="Descripción del proyecto">{descripcion}</p>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+
+            
+            <p class="estilo"><strong>Email</strong></p>
+            <template if:true={esEmpleado}><p title="Email"><lightning-formatted-email value={Email}></lightning-formatted-email></p>
+            </template>
+            <template if:false={esEmpleado}>
+            <template for:each={ListaEmpleados} for:item="Allocation__c">
+                <p key={Allocation__c.Id}><lightning-formatted-email value={Allocation__c.Resource__r.Email__c}></lightning-formatted-email></p>
+            </template>
+        </template>
+            <p class="estilo"><strong>Carpeta</strong></p>
+            <p title="Carpeta">{carpeta}</p>
+            <p class="estilo"><strong>Fecha del proyecto</strong></p>
+            <p title="Fecha">{inicioProyecto} - {finalProyecto}</p>
+            <p class="estilo"><strong>Fecha de Asignacion</strong></p>
+            <template class="temp" for:each={Asignaciones} for:item="asignacion">
+            <p title="Fecha Asignaciones" key={asignacion.id}>{asignacion.Start_Date__c} - {asignacion.End_Date__c}</p>
+        </template>
+            <!-- More lightning-output-field components here -->
+        </div>
+    </div>
+    </c-gantt_chart_modal>
+</template>
+</body>
+</html>

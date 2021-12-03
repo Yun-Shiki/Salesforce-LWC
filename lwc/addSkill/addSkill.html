@@ -1,0 +1,22 @@
+<!-- sldsValidatorIgnore -->
+<template> 
+    <lightning-card title="Añadir Skill" >
+       
+        <lightning-button slot="actions" variant="brand" label="Guardar" onclick={saveRecord}></lightning-button>
+        <lightning-input type="search" onchange={handleSearchTermChange} variant="label-hidden" class="slds-m-bottom_small"
+        label="Buscar" placeholder="Buscar en Skill Book" value={searchTerm}> </lightning-input>
+        <div slot="footer" >
+            <lightning-button slot="footer" variant="brand" label="Guardar" onclick={saveRecord}></lightning-button>
+        </div>        
+        <div class ="slds-box">
+            <lightning-datatable data-id="datarow" 
+            data={data} columns={cols} key-field="Id" selected-rows={selection} onrowselection={getid} >
+            </lightning-datatable>
+        </div>
+        <div style="display: none;">
+            {recordId}
+        </div>
+    
+    </lightning-card> 
+    
+</template>
